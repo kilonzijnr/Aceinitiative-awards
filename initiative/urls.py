@@ -20,7 +20,4 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('aceinitiative.urls')),
-    path('login/', views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', views.LogoutView.as_view(template_name='home.html'), {"next_page": '/'}),
 ]

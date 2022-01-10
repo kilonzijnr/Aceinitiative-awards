@@ -146,6 +146,7 @@ def update_profile(request):
 
 @login_required(login_url='login')
 def projects(request):
+    """View for displaying all projects"""
     projects = Project.objects.all()
     return render(request, 'project.html', {'projects':projects})
 

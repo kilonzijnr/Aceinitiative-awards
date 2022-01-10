@@ -67,3 +67,8 @@ def registerUser(request):
     }
 
     return render(request, 'registration/login.html', context)
+
+def homepage(request):
+    """Default landing page"""
+    projects = Project.objects.all()
+    return render(request,'home.html',{'projects':projects})

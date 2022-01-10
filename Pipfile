@@ -12,6 +12,8 @@ django-restframework = "*"
 django-crispy-forms = "*"
 django-rest-framework = "*"
 psycopg2 = "*"
+django-decouple = "*"
+gunicorn = "*"
 
 [dev-packages]
 

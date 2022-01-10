@@ -102,3 +102,17 @@ def view_profile(request,pk):
     projects = Project.objects.filter(profile_id=current_user.id)
     profile = Profile.objects.filter(name=current_user).first()
     return render(request,'profile.html', {"projects":projects, "profile":profile})
+
+@login_required(login_url='login')
+def search_project(request):
+    """Functionality for searching for a specific project"""
+    if "search" in request.GET and request.GET["search"]:
+        search_term = request.GET.get("search").lower
+        projects = Project.search_by_name(search_term)
+        message = f"{search_term}"
+        title = message
+
+        return render(request,'search.html',{"success":message,"projects":projects,"title":title})
+    else:
+        message = "Enter a valid project name"
+        return render(request,'search.html',{'danger':message})

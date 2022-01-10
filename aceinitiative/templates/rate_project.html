@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %}
+
+{% block content %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="info col-md-6">
+                <div>
+                    <img style="max-width: 400px;" src="{{ project.projectimage.url }}" alt="">
+                </div>
+                <a href="{{ project.link }}"><img style="max-width: 100px;" class="linkies my-2" src="https://img.icons8.com/color/344/link--v2.png" alt="link"></a>
+                <a target="_blank" href="{{ project.link }}" style="color: white;" class="my-2"><b><i>Project Link</i></b></a>
+            </div>
+            <div class="form-div col-md-6">
+                <div>
+                    <form action="{% url 'rate_project' project.id %}" method="post">
+                        {% csrf_token %}
+                        
+                        {% bootstrap_form form %}
+
+                        <input type="submit" value='Submit Ratings' class="btn btn-sm btn-danger">
+                    </form>
+                </div>
+                <br><br>
+                <div class="ratings">
+
+                    {% if ratings %}                        
+
+                    {% for rating in ratings %}
+                    
+                    
+                    <div class="rate container">
+                       <div class="row">
+                        <div class="info col-md-5">
+                            <small>Rating Comment: "{{ rating.comment }}"</small><br>
+                            <small>Raters Name: {{ rating.rater.username }}</small><br>
+                            <small> Time Posted: {{ rating.created |timesince }} ago</small>
+                        </div>
+                        <div class="scores col-md-7">
+                            <div class="score average">
+                                General Rating: {{ rating.average_score }}
+                            </div>
+                            <div class="score">
+                               Design Rate: {{ rating.design_vote }}
+                            </div>
+
+                            <div class="score">
+                                Usability Rate: {{ rating.usability_vote }}
+                            </div>
+
+                            <div class="score">
+                                Content Rate: {{ rating.content_vote }}
+                            </div>
+                        </div>
+                       </div>
+                    </div>
+                    
+                    {% endfor %}
+                    {% else %}
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

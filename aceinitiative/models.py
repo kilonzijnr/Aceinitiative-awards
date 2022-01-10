@@ -38,3 +38,28 @@ class Project(models.Model):
         """Class method to source a project"""
         projects = cls.objects.filter(name_icontains = search_term)
         return projects
+
+class Ratings(models.Model):
+    rater = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    design_vote = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    usability_vote = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    content_vote = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    comment = models.TextField()
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+
+
+    def save_rating(self):
+        self.save()
+
+    def delete_rating(self):
+        self.delete()
+        
+    def __str__(self):
+        return self.rater.username
+
+    @property
+    def average_score(self):
+        average = (self.design_vote + self.content_vote + self.usability_vote) /3
+        return round(average, 1)

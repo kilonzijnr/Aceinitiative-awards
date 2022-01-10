@@ -143,3 +143,12 @@ def update_profile(request):
         'form':form
     }
     return render(request, 'update_profile.html', context)
+
+@login_required(login_url='login')
+def projects(request):
+    projects = Project.objects.all()
+    return render(request, 'project.html', {'projects':projects})
+
+@login_required(login_url='login')
+def api_page(request):
+    return render(request,'apiends.html')

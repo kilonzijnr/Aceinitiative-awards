@@ -20,7 +20,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     """Class model for the project fields"""
-    projectimage = CloudinaryField("image", null=True)
+    projectimage = CloudinaryField("image")
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField()

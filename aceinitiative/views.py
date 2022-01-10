@@ -130,3 +130,16 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'new_project.html', {'form':form})
+
+def update_profile(request):
+    user = request.user
+    form = ProfileUpdateForm(instance=user)
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('view_profile', pk=user.id)
+    context = {
+        'form':form
+    }
+    return render(request, 'update_profile.html', context)

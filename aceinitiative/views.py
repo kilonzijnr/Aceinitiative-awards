@@ -94,3 +94,11 @@ def rate_project(request, id):
         form = RatingsForm()   
     
     return render(request, 'rate_project.html', {'project':project, 'form':form , 'ratings':ratings})
+
+@login_required(login_url='login')
+def view_profile(request,pk):
+    """Display function for user profile"""
+    current_user = request.user
+    projects = Project.objects.filter(profile_id=current_user.id)
+    profile = Profile.objects.filter(name=current_user).first()
+    return render(request,'profile.html', {"projects":projects, "profile":profile})

@@ -11,6 +11,7 @@ cloudinary = "*"
 django-restframework = "*"
 django-crispy-forms = "*"
 django-rest-framework = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

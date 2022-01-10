@@ -152,3 +152,17 @@ def projects(request):
 @login_required(login_url='login')
 def api_page(request):
     return render(request,'apiends.html')
+
+class ProfileList(APIView):
+    """API class for returning Profile fields in API view"""
+    def get(self,request,fromat=None):
+        all_profiles= Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    """API class for returning Project field in API view"""
+    def get(self, request, fromat=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)

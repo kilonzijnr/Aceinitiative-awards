@@ -116,3 +116,17 @@ def search_project(request):
     else:
         message = "Enter a valid project name"
         return render(request,'search.html',{'danger':message})
+
+@login_required(login_url='login')
+def new_project(request):
+    current_user = request.user
+    if request.method == "POST":
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.rater = current_user
+            project.save()
+        return redirect('homepage')
+    else:
+        form = NewProjectForm()
+    return render(request, 'new_project.html', {'form':form})

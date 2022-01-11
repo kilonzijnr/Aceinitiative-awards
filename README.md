@@ -25,7 +25,7 @@ You have read the projects REAME.md Documentation.
 # Contributing to Ace Initiative-Awards
 - You can email me the suggestion or ;
 
-To contribute to <The-Hive-Heart>, follow these steps:
+To contribute to <Ace Initiative Awards>, follow these steps:
 
 Fork this repository.
 Create a branch: git checkout -b <ft-comments>.
@@ -41,4 +41,4 @@ This application has being a personal undertaken project from scratch.
 If you want to contact me you can reach me at vkilonzi05@gmail.com.
 
 # License
-This project uses an [MIT] License:(https://github.com/kilonzijnr/Aceinitiative-awards/blob/master/License).
+This project uses an [MIT] [License](https://github.com/kilonzijnr/Aceinitiative-awards/blob/master/License)
